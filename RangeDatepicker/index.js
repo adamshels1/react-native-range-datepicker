@@ -11,6 +11,7 @@ import {
 import Month from './Month';
 // import styles from './styles';
 import { dayJsMod } from '../helper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const RangeDatepicker = (props) => {
 	const [startDate, setStartDate] = useState(props.startDate && dayJsMod(props.startDate, 'YYYYMMDD'));
@@ -193,16 +194,20 @@ const RangeDatepicker = (props) => {
 				}}
 				keyExtractor = { (item, index) => index.toString() }
 				showsVerticalScrollIndicator={false}
+				inverted={props.isHistorical}
 			/>
 
 			{
 				props.showButton ? 
 				(
 				<View style={[styles.buttonWrapper, props.buttonContainerStyle]}>
-					<Button
-						title="Select Date" 
+					<TouchableOpacity
 						onPress={handleConfirmDate}
-						color={props.buttonColor} />
+						color={props.buttonColor}
+						style={[styles.button, props.button]}
+						>
+							<Text style={props.buttonTextStyle}>Select Dates</Text>
+					</TouchableOpacity>
 				</View>
 				) : null
 			}	
@@ -277,13 +282,16 @@ const styles = StyleSheet.create({
 		paddingTop: 10,
 	},
 	buttonWrapper : {
-		paddingVertical: 10,
-		paddingHorizontal: 15,
-		backgroundColor: 'white',
-		borderTopWidth: 1,
-		borderColor: '#ccc',
-		alignItems: 'stretch'
+		flexDirection: 'row',
+		justifyContent: 'center', 
+		alignItems: 'center',
+		backgroundColor: '#fff',
+		marginTop: 10
 	},
+	button: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	}
 });
 
 export default RangeDatepicker;
