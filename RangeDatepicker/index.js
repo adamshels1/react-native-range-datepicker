@@ -7,11 +7,11 @@ import {
   FlatList,
   StyleSheet,
   Button,
+  TouchableOpacity
 } from 'react-native';
 import Month from './Month';
 // import styles from './styles';
 import { dayJsMod } from '../helper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const RangeDatepicker = (props) => {
 	const [startDate, setStartDate] = useState(props.startDate && dayJsMod(props.startDate, 'YYYYMMDD'));
